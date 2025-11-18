@@ -1,4 +1,4 @@
-import { Be_Vietnam_Pro, Inter } from "next/font/google";
+﻿import { Be_Vietnam_Pro, Inter } from "next/font/google";
 
 import "@/app/globals.css";
 import { Providers } from "./providers";
@@ -19,7 +19,7 @@ const inter = Inter({
 export const metadata = {
   title: "SSE Customer Portal",
   description:
-    "Cổng thông tin khách hàng SSE cho phép đăng ký, tra cứu vận đơn, quản lý voucher và gửi yêu cầu giao nhận.",
+    "Cổng thông tin khách hàng Saigon Speed: đăng ký, theo dõi vận đơn, quản lý ưu đãi và gửi yêu cầu giao nhận nhanh chóng.",
 };
 
 export default function RootLayout({ children }) {

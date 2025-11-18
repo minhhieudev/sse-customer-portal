@@ -7,11 +7,11 @@ module.exports = {
     extend: {
       colors: {
         brand: {
+          primary: "#004B9A",
+          accent: "#F4A300",
           ink: "#1f2050",
-          purple: "#5146ff",
-          lavender: "#f3f1ff",
-          blush: "#ffd7f2",
-          sky: "#eef6ff",
+          white: "#ffffff",
+          success: "#47B649",
         },
       },
       fontFamily: {

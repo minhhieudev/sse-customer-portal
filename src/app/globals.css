@@ -8,7 +8,7 @@
 
 body {
   font-family: var(--font-body);
-  background: radial-gradient(circle at top, #f4f0ff 0%, #eef6ff 60%, #f9f9ff 100%);
+  background: radial-gradient(circle at 20% 20%, #eaf2fb 0%, #f9fbff 45%, #fdf7ec 100%);
   min-height: 100vh;
   margin: 0px;
 }
@@ -20,7 +20,7 @@ a {
 }
 
 ::selection {
-  background: rgba(81, 70, 255, 0.2);
+  background: rgba(0, 75, 154, 0.2);
 }
 
 /* Remove margin-top from space-y utilities */

@@ -103,7 +103,7 @@ const LoginForm = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     const mockUser = {
-      name: "Khách hàng SSE",
+      name: "Khách hàng",
       email: "customer@sse.com",
       avatar: "/profile.png",
     };

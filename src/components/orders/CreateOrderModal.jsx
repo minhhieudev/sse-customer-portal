@@ -2,6 +2,16 @@
 
 import { useEffect, useMemo, useState } from "react";
 import {
+  Button,
+  Input,
+  Textarea,
+  Select,
+  SelectItem,
+  RadioGroup,
+  Radio,
+  Checkbox,
+} from "@nextui-org/react";
+import {
   Package,
   User,
   Phone,
@@ -229,59 +239,40 @@ export default function CreateOrderModal({ isOpen, onClose, onSubmit }) {
                   <label htmlFor="serviceCode" className="block text-sm font-medium text-slate-700 mb-1">
                     Dịch vụ chính
                   </label>
-                  <select
-                    id="serviceCode"
-                    name="serviceCode"
-                    value={formData.serviceCode}
-                    onChange={handleChange}
-                    className="w-full rounded-lg border border-slate-300 px-3 py-2 focus:border-[#5146ff] focus:ring-[#5146ff]/50"
+                  <Select
+                    selectedKeys={[formData.serviceCode]}
+                    onSelectionChange={(keys) => setFormData((prev) => ({ ...prev, serviceCode: keys.currentKey }))}
+                    className="w-full"
                   >
                     {serviceOptions.map((option) => (
-                      <option key={option.value} value={option.value}>
+                      <SelectItem key={option.value} value={option.value}>
                         {option.label}
-                      </option>
+                      </SelectItem>
                     ))}
-                  </select>
+                  </Select>
                 </div>
 
                 <div className="space-y-1">
                   <p className="text-sm font-medium text-slate-700">Lấy hàng tận nơi?</p>
-                  <div className="flex gap-4">
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="pickup"
-                        value="yes"
-                        checked={formData.pickup}
-                        onChange={(e) => setFormData((prev) => ({ ...prev, pickup: e.target.value === "yes" }))}
-                        className="mr-1"
-                      />
-                      Có
-                    </label>
-                    <label className="flex items-center">
-                      <input
-                        type="radio"
-                        name="pickup"
-                        value="no"
-                        checked={!formData.pickup}
-                        onChange={(e) => setFormData((prev) => ({ ...prev, pickup: e.target.value === "yes" }))}
-                        className="mr-1"
-                      />
-                      Khách tự giao
-                    </label>
-                  </div>
+                  <RadioGroup
+                    orientation="horizontal"
+                    value={formData.pickup ? "yes" : "no"}
+                    onValueChange={(value) => setFormData((prev) => ({ ...prev, pickup: value === "yes" }))}
+                  >
+                    <Radio value="yes">Có</Radio>
+                    <Radio value="no">Khách tự giao</Radio>
+                  </RadioGroup>
                 </div>
 
-                <label className="flex items-center">
-                  <input
-                    type="checkbox"
-                    name="insurance"
-                    checked={formData.insurance}
-                    onChange={(e) => setFormData((prev) => ({ ...prev, insurance: e.target.checked }))}
-                    className="mr-1"
-                  />
-                  <span className="text-sm text-slate-700">Bảo hiểm hàng hóa</span>
-                </label>
+                <div className="flex items-center">
+                  <Checkbox
+                    isSelected={formData.insurance}
+                    onValueChange={(checked) => setFormData((prev) => ({ ...prev, insurance: checked }))}
+                    className="mr-2"
+                  >
+                    <span className="text-sm text-slate-700">Bảo hiểm hàng hóa</span>
+                  </Checkbox>
+                </div>
               </div>
             </div>
 
