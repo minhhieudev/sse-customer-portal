@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import {
   Search,
@@ -67,7 +67,7 @@ const MOCK_TRACKING_RESULT = {
   ],
 };
 
-export default function TrackingPage() {
+function TrackingPageContent() {
   const [trackingId, setTrackingId] = useState("");
   const [result, setResult] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -335,3 +335,11 @@ const InfoRow = ({ label, value }) => (
 const ChipBadge = ({ children }) => (
   <span className="rounded-full bg-slate-100 px-3 py-1">{children}</span>
 );
+
+export default function TrackingPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <TrackingPageContent />
+    </Suspense>
+  );
+}
