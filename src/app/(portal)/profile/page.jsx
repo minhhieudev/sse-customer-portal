@@ -68,30 +68,30 @@ export default function ProfilePage() {
       </div>
 
       <div className="grid grid-cols-1 gap-4 md:gap-6 md:grid-cols-4 xl:grid-cols-4">
-        <aside className="md:col-span-1 xl:col-span-1 order-2 md:order-1">
-          {/* Mobile: Bottom sticky navigation */}
-          <nav className="sticky bottom-0 left-0 right-0 z-10 bg-white/95 backdrop-blur-lg border-t border-slate-200 px-2 py-1 md:relative md:bottom-auto md:left-auto md:right-auto md:z-0 md:bg-white md:backdrop-blur-none md:border-t-0 md:border-slate-100 md:p-2 md:rounded-2xl md:shadow-sm">
-            <div className="flex md:flex-col md:space-y-1">
+        <aside className="md:col-span-1 xl:col-span-1 order-1 md:order-1">
+          {/* Navigation */}
+          <nav className="sticky top-20 md:top-0 z-10 bg-white/95 backdrop-blur-lg border border-slate-200 px-2 py-2 md:bg-white md:backdrop-blur-none md:border-slate-100 md:rounded-2xl md:shadow-sm md:border md:p-4">
+            <div className="flex overflow-x-auto md:flex-col md:space-y-1 gap-2 md:gap-0">
               {TABS.map((tab) => (
                 <button
                   key={tab.name}
                   onClick={() => setActiveTab(tab.name)}
                   className={clsx(
-                    "flex-1 md:flex-initial md:w-full flex flex-col md:flex-row items-center justify-center md:justify-start gap-1 md:gap-3 rounded-xl px-2 py-2 md:px-4 md:py-3 text-center md:text-left text-xs md:text-sm font-medium transition-all duration-200 whitespace-nowrap md:whitespace-normal",
+                    "flex-shrink-0 md:flex-1 flex flex-col md:flex-row items-center justify-center md:justify-start gap-2 rounded-xl px-3 py-2 md:px-4 md:py-3 text-xs md:text-sm font-medium transition-all duration-200 whitespace-nowrap md:whitespace-normal",
                     activeTab === tab.name
-                      ? "bg-[#5146ff] text-white shadow-lg shadow-[#5146ff]/30 md:bg-[#5146ff] md:text-white md:shadow-lg md:shadow-[#5146ff]/30"
-                      : "text-slate-600 hover:bg-indigo-50 hover:text-[#1f2050] md:hover:bg-indigo-50 md:hover:text-[#1f2050]"
+                      ? "bg-[#5146ff] text-white shadow-lg shadow-[#5146ff]/30"
+                      : "text-slate-600 hover:bg-indigo-50 hover:text-[#1f2050]"
                   )}
                 >
-                  <tab.icon className="h-4 w-4 md:h-5 md:w-5" />
-                  <span className="truncate md:truncate">{tab.name}</span>
+                  <tab.icon className="h-4 w-4 md:h-5 md:w-5 flex-shrink-0" />
+                  <span className="text-xs md:text-sm">{tab.name}</span>
                 </button>
               ))}
             </div>
           </nav>
         </aside>
 
-        <main className="md:col-span-3 xl:col-span-3 order-1 md:order-2">
+        <main className="md:col-span-3 xl:col-span-3 order-2 md:order-2">
           <div className="rounded-2xl bg-white p-4 sm:p-6 shadow-sm border border-slate-100">
             {renderContent}
           </div>
@@ -117,26 +117,28 @@ const FormInput = (props) => (
 
 const GeneralInfo = () => (
   <form className="space-y-6">
-    <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center">
-      <div className="relative h-20 w-20">
-        <Image src="/profile.png" alt="Avatar" fill className="rounded-full bg-slate-200 object-cover" />
-      </div>
-      <div className="flex flex-wrap items-center gap-3">
-        <button type="button" className="flex items-center gap-2 rounded-full bg-gradient-to-r from-[#5146ff] to-[#6b5aff] px-4 py-2 text-sm font-medium text-white shadow-md shadow-[#5146ff]/30 transition hover:shadow-lg hover:scale-105">
-          <User className="h-4 w-4" />
-          Thay đổi ảnh
-        </button>
-        <button type="button" className="flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:bg-slate-50 hover:border-slate-300">
-          <svg className="h-4 w-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-          </svg>
-          Xóa ảnh
-        </button>
-        <p className="text-xs text-slate-400 w-full sm:w-auto">JPG, GIF hoặc PNG. Tối đa 1MB.</p>
+    <div className="flex flex-col gap-4 sm:gap-6">
+      <div className="flex items-start gap-3 sm:gap-4">
+        <div className="relative h-20 w-20 flex-shrink-0 sm:h-28 sm:w-28">
+          <Image src="/profile.png" alt="Avatar" fill className="rounded-full bg-slate-200 object-cover" />
+        </div>
+        <div className="flex flex-col gap-2 flex-1">
+          <button type="button" className="flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#5146ff] to-[#6b5aff] px-3 py-2 text-xs sm:text-sm font-medium text-white shadow-md shadow-[#5146ff]/30 transition hover:shadow-lg hover:scale-105 w-full">
+            <User className="h-4 w-4" />
+            Thay đổi ảnh
+          </button>
+          <button type="button" className="flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-2 text-xs sm:text-sm font-medium text-slate-700 shadow-sm transition hover:bg-slate-50 hover:border-slate-300 w-full">
+            <svg className="h-4 w-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+            </svg>
+            Xóa ảnh
+          </button>
+          <p className="text-xs text-slate-400">JPG, GIF hoặc PNG. Tối đa 1MB.</p>
+        </div>
       </div>
     </div>
 
-    <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+    <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2">
       <FormRow label="Họ và tên">
         <FormInput type="text" defaultValue="Khách hàng SSE" />
       </FormRow>
@@ -150,12 +152,12 @@ const GeneralInfo = () => (
         <FormInput type="tel" defaultValue="0987654321" />
       </FormRow>
     </div>
-    <div className="flex flex-wrap gap-3 pt-2">
-      <button type="submit" className="flex items-center gap-2 rounded-full bg-gradient-to-r from-[#5146ff] to-[#6b5aff] px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-[#5146ff]/30 transition-transform hover:scale-105 hover:shadow-xl">
+    <div className="flex flex-col gap-2 sm:flex-row sm:gap-3 pt-2">
+      <button type="submit" className="flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#5146ff] to-[#6b5aff] px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-[#5146ff]/30 transition-transform hover:scale-105 hover:shadow-xl w-full sm:w-auto">
         <Save className="h-5 w-5" />
         <span>Lưu thay đổi</span>
       </button>
-      <button type="button" className="flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 shadow-sm hover:bg-slate-50 hover:border-slate-300 transition">
+      <button type="button" className="flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 shadow-sm hover:bg-slate-50 hover:border-slate-300 transition w-full sm:w-auto">
         <RotateCcwIcon />
         <span>Khôi phục</span>
       </button>
@@ -165,15 +167,15 @@ const GeneralInfo = () => (
 
 const AddressBook = () => (
   <div className="space-y-5">
-    <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+    <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-between">
       <h2 className="text-xl font-bold text-[#1f2050]">Sổ địa chỉ</h2>
-      <button type="button" className="flex items-center gap-2 rounded-full bg-gradient-to-r from-[#5146ff] to-[#6b5aff] px-5 py-3 text-sm font-semibold text-white shadow-md shadow-[#5146ff]/30 transition hover:shadow-lg hover:scale-105">
-        <Plus className="h-4 w-4" />
+      <button type="button" className="flex items-center justify-center sm:justify-start gap-2 rounded-full bg-gradient-to-r from-[#5146ff] to-[#6b5aff] px-5 py-3 text-sm font-semibold text-white shadow-md shadow-[#5146ff]/30 transition hover:shadow-lg hover:scale-105 w-full sm:w-auto">
+        <Plus className="h-4 w-4 flex-shrink-0" />
         <span>Thêm địa chỉ</span>
       </button>
     </div>
 
-    <div className="space-y-4">
+    <div className="space-y-3">
       {[{
         label: "Văn phòng công ty",
         address: "227 Nguyễn Văn Cừ, Phường 4, Quận 5, TP.HCM",
@@ -183,20 +185,22 @@ const AddressBook = () => (
         address: "Lô A1, KCN Sóng Thần, Dĩ An, Bình Dương",
         isDefault: false,
       }].map((item) => (
-        <div key={item.label} className="rounded-xl border border-slate-200 bg-slate-50/60 px-4 py-3">
-          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-            <div className="space-y-1">
-              <p className="font-semibold text-[#1f2050]">{item.label}</p>
-              <p className="text-sm text-slate-600">{item.address}</p>
+        <div key={item.label} className="rounded-xl border border-slate-200 bg-slate-50/60 p-4 sm:p-5">
+          <div className="flex flex-col gap-3 sm:gap-4">
+            <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+              <div className="space-y-1">
+                <p className="font-semibold text-[#1f2050]">{item.label}</p>
+                <p className="text-sm text-slate-600">{item.address}</p>
+              </div>
+              {item.isDefault && <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700 w-fit">Mặc định</span>}
             </div>
-            <div className="flex items-center gap-3">
-              {item.isDefault && <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">Mặc định</span>}
-              <button className="flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-1.5 text-xs font-semibold text-blue-700 hover:bg-blue-100 hover:border-blue-300 transition">
-                <Edit className="h-3 w-3" />
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-end">
+              <button className="flex items-center justify-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-xs font-semibold text-blue-700 hover:bg-blue-100 hover:border-blue-300 transition w-full sm:w-auto">
+                <Edit className="h-4 w-4" />
                 Sửa
               </button>
-              <button className="flex items-center gap-2 rounded-full border border-red-200 bg-red-50 px-3 py-1.5 text-xs font-semibold text-red-700 hover:bg-red-100 hover:border-red-300 transition">
-                <Trash2 className="h-3 w-3" />
+              <button className="flex items-center justify-center gap-2 rounded-full border border-red-200 bg-red-50 px-4 py-2 text-xs font-semibold text-red-700 hover:bg-red-100 hover:border-red-300 transition w-full sm:w-auto">
+                <Trash2 className="h-4 w-4" />
                 Xóa
               </button>
             </div>
@@ -210,23 +214,23 @@ const AddressBook = () => (
 const SecuritySettings = () => (
   <form className="space-y-6">
     <h2 className="text-xl font-bold text-[#1f2050]">Bảo mật</h2>
-    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+    <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2">
       <FormRow label="Mật khẩu hiện tại">
         <FormInput type="password" placeholder="••••••••" />
       </FormRow>
       <FormRow label="Mật khẩu mới">
         <FormInput type="password" placeholder="••••••••" />
       </FormRow>
-      <FormRow label="Xác nhận mật khẩu mới">
+      <FormRow label="Xác nhận mật khẩu mới" extraClass="md:col-span-2">
         <FormInput type="password" placeholder="••••••••" />
       </FormRow>
     </div>
-    <div className="flex flex-wrap gap-3 pt-2">
-      <button type="submit" className="flex items-center gap-2 rounded-full bg-[#5146ff] px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-[#5146ff]/30 transition-transform hover:scale-105">
+    <div className="flex flex-col gap-2 sm:flex-row sm:gap-3 pt-2">
+      <button type="submit" className="flex items-center justify-center gap-2 rounded-full bg-[#5146ff] px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-[#5146ff]/30 transition-transform hover:scale-105 w-full sm:w-auto">
         <Lock className="h-5 w-5" />
         <span>Đổi mật khẩu</span>
       </button>
-      <button type="button" className="flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 shadow-sm hover:bg-slate-50 hover:border-slate-300 transition">
+      <button type="button" className="flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 shadow-sm hover:bg-slate-50 hover:border-slate-300 transition w-full sm:w-auto">
         <svg className="h-4 w-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
         </svg>
@@ -341,14 +345,14 @@ const Notifications = () => {
 
   return (
     <div className="space-y-5">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <h2 className="text-xl font-bold text-[#1f2050]">Lịch sử thông báo</h2>
-        <button type="button" className="text-sm font-semibold text-[#5146ff] hover:text-[#4137d8]">
+        <button type="button" className="text-sm font-semibold text-[#5146ff] hover:text-[#4137d8] transition whitespace-nowrap w-full sm:w-auto text-center sm:text-left">
           Đánh dấu tất cả đã đọc
         </button>
       </div>
 
-      <div className="space-y-4 max-h-[600px] overflow-y-auto">
+      <div className="space-y-3 sm:space-y-4 max-h-[600px] overflow-y-auto">
         {notificationData.map((notification) => {
           const NotificationIcon = notification.icon;
           return (
@@ -356,47 +360,47 @@ const Notifications = () => {
               key={notification.id}
               href={notification.actionUrl}
               className={clsx(
-                "block rounded-xl border bg-white p-4 shadow-sm transition hover:shadow-md",
+                "block rounded-lg sm:rounded-xl border bg-white p-3 sm:p-4 shadow-sm transition hover:shadow-md",
                 !notification.isRead
                   ? "border-blue-200 bg-blue-50/30"
                   : "border-slate-200 hover:border-slate-300"
               )}
             >
-              <div className="flex gap-4">
+              <div className="flex gap-3 sm:gap-4">
                 <div className={clsx(
-                  "flex h-10 w-10 items-center justify-center rounded-full",
+                  "flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full flex-shrink-0",
                   getStatusBadgeStyle(notification.statusBadge)
                 )}>
-                  <NotificationIcon className="h-5 w-5" />
+                  <NotificationIcon className="h-4 w-4 sm:h-5 sm:w-5" />
                 </div>
 
-                <div className="flex-1 space-y-2">
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="space-y-1">
+                <div className="flex-1 min-w-0 space-y-2">
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
+                    <div className="space-y-1 min-w-0">
                       <div className={clsx(
-                        "text-sm font-semibold",
+                        "text-xs sm:text-sm font-semibold leading-snug",
                         !notification.isRead ? "text-[#1f2050]" : "text-slate-800"
                       )}>
                         [{notification.category}] {notification.title}
                       </div>
-                      <p className="text-sm text-slate-600 leading-relaxed">
+                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-2 sm:line-clamp-none">
                         {notification.message}
                       </p>
                     </div>
 
-                    <div className="flex flex-col items-end gap-1">
+                    <div className="flex items-center gap-2 flex-shrink-0">
                       <span className="text-xs text-slate-400 whitespace-nowrap">
                         {notification.date} • {notification.time}
                       </span>
                       {!notification.isRead && (
-                        <span className="inline-block h-2 w-2 rounded-full bg-blue-500"></span>
+                        <span className="inline-block h-2 w-2 rounded-full bg-blue-500 flex-shrink-0"></span>
                       )}
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-1 text-xs text-slate-500">
+                  <div className="flex items-center gap-1 text-xs text-slate-500 sm:text-xs">
                     <span className="font-medium">•</span>
-                    <span>Click để xem chi tiết</span>
+                    <span className="truncate">Click để xem chi tiết</span>
                   </div>
                 </div>
               </div>
@@ -406,7 +410,7 @@ const Notifications = () => {
       </div>
 
       <div className="text-center pt-4">
-        <button type="button" className="px-4 py-2 text-sm font-semibold text-[#5146ff] hover:text-[#4137d8] transition">
+        <button type="button" className="px-4 py-2 text-sm font-semibold text-[#5146ff] hover:text-[#4137d8] transition whitespace-nowrap">
           Xem thêm thông báo cũ hơn
         </button>
       </div>

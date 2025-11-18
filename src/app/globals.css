@@ -23,6 +23,19 @@ a {
   background: rgba(81, 70, 255, 0.2);
 }
 
-.space-y-8 > :not([hidden]) ~ :not([hidden]) {
-  margin-top: 0;
+/* Remove margin-top from space-y utilities */
+[class*="space-y-"] > :first-child {
+  margin-top: 0 !important;
+}
+
+/* Triangle arrow for popups */
+.popup-arrow::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid white;
 }

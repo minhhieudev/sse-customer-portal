@@ -180,7 +180,7 @@ function UserProfile({ user, onLogout }) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -10 }}
             transition={{ duration: 0.15 }}
-            className="absolute top-full right-0 mt-3 w-64 origin-top-right rounded-2xl bg-white shadow-2xl shadow-slate-500/20 ring-1 ring-slate-900/5"
+            className="absolute top-full right-0 mt-3 w-64 origin-top-right rounded-2xl bg-white shadow-2xl shadow-slate-500/20 ring-1 ring-slate-900/5 popup-arrow"
           >
 
             <div className="flex items-center gap-4 border-b border-slate-100 p-4">
@@ -286,7 +286,7 @@ function Notifications() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: -10 }}
               transition={{ duration: 0.15 }}
-              className="hidden sm:block absolute right-0 top-full mt-3 w-96 max-w-sm rounded-2xl bg-white shadow-2xl shadow-slate-500/20 ring-1 ring-slate-900/5 z-50"
+              className="hidden sm:block absolute right-0 top-full mt-3 w-96 max-w-sm rounded-2xl bg-white shadow-2xl shadow-slate-500/20 ring-1 ring-slate-900/5 z-50 popup-arrow"
             >
               <div className="p-4">
                 <div className="flex items-center justify-between mb-3">
@@ -329,62 +329,53 @@ function Notifications() {
               </div>
             </motion.div>
 
-            {/* Mobile Overlay */}
+            {/* Mobile Dropdown */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="sm:hidden fixed inset-0 z-[9999] bg-black/60 backdrop-blur-[2px] flex flex-col"
-              onClick={() => setIsOpen(false)}
+              initial={{ opacity: 0, scale: 0.95, y: -10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: -10 }}
+              transition={{ duration: 0.15 }}
+              className="sm:hidden fixed right-4 top-20 w-72 rounded-lg bg-white shadow-lg ring-1 ring-slate-900/5 z-50 popup-arrow"
             >
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 20 }}
-                transition={{ duration: 0.2 }}
-                className="relative z-[10000] mx-auto mt-auto w-full max-w-xl max-h-[85vh] rounded-t-2xl bg-white shadow-2xl overflow-hidden"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <div className="p-4">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-bold text-[#1f2050]">Thông báo</h3>
-                    <button onClick={() => setIsOpen(false)} className="rounded-lg p-1 text-slate-400 hover:text-slate-600 hover:bg-slate-100">
-                      <X className="h-5 w-5" />
-                    </button>
-                  </div>
-                  <div className="space-y-1 max-h-[calc(85vh-150px)] overflow-y-auto">
-                    {MOCK_NOTIFICATIONS.map((item, index) => (
+              <div className="p-3">
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="text-sm font-bold text-[#1f2050]">Thông báo</h3>
+                  <button onClick={() => setIsOpen(false)} className="rounded p-0.5 text-slate-400 hover:text-slate-600 hover:bg-slate-100">
+                    <X className="h-4 w-4" />
+                  </button>
+                </div>
+                <div className="space-y-1.5 max-h-80 overflow-y-auto">
+                  {MOCK_NOTIFICATIONS.map((item, index) => (
+                    <div
+                      key={index}
+                      className={clsx(
+                        "flex items-start gap-2 p-2 rounded cursor-pointer transition-colors text-left",
+                        !item.isRead ? "bg-blue-50/70 hover:bg-blue-50" : "hover:bg-slate-50"
+                      )}
+                    >
                       <div
-                        key={index}
                         className={clsx(
-                          "flex items-start gap-3 p-3 rounded-lg cursor-pointer transition-colors",
-                          !item.isRead ? "bg-blue-50/50 hover:bg-blue-50" : "hover:bg-slate-50"
+                          "flex h-7 w-7 items-center justify-center rounded-full flex-shrink-0 mt-0.5",
+                          !item.isRead ? "bg-blue-100 text-blue-600" : "bg-slate-100 text-slate-500"
                         )}
                       >
-                        <div
-                          className={clsx(
-                            "flex h-8 w-8 items-center justify-center rounded-full flex-shrink-0",
-                            !item.isRead ? "bg-blue-100 text-blue-600" : "bg-slate-100 text-slate-500"
-                          )}
-                        >
-                          <item.icon className="h-4 w-4" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <p className="text-sm font-semibold text-slate-800 truncate">{item.title}</p>
-                          <p className="text-sm text-slate-500 line-clamp-2">{item.description}</p>
-                          <p className="mt-1 text-xs text-slate-400">{item.time}</p>
-                        </div>
-                        {!item.isRead && <div className="h-2 w-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>}
+                        <item.icon className="h-3.5 w-3.5" />
                       </div>
-                    ))}
-                  </div>
-                  <div className="mt-4 pt-3 border-t border-slate-100">
-                    <button className="w-full text-sm font-semibold text-blue-600 hover:text-blue-700 py-3">
-                      Xem tất cả
-                    </button>
-                  </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs font-semibold text-slate-800 truncate">{item.title}</p>
+                        <p className="text-xs text-slate-600 line-clamp-1">{item.description}</p>
+                        <p className="text-xs text-slate-400 mt-0.5">{item.time}</p>
+                      </div>
+                      {!item.isRead && <div className="h-1 w-1 bg-blue-500 rounded-full mt-1.5 flex-shrink-0"></div>}
+                    </div>
+                  ))}
                 </div>
-              </motion.div>
+                <div className="mt-2 pt-2 border-t border-slate-100">
+                  <button className="w-full text-xs font-semibold text-blue-600 hover:text-blue-700 py-1.5">
+                    Xem tất cả
+                  </button>
+                </div>
+              </div>
             </motion.div>
           </>
         )}
