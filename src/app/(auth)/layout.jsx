@@ -7,7 +7,7 @@ export default function AuthLayout({ children }) {
       <div className="relative hidden flex-col items-center justify-between bg-slate-900 p-10 text-white lg:flex">
         <div className="absolute inset-0">
             <Image
-                src="/customer.png"
+                src="/bg.png"
                 alt="SSE Customer"
                 fill
                 style={{ objectFit: 'cover' }}

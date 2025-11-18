@@ -3,7 +3,7 @@
 import CreateOrderModal from "@/components/orders/CreateOrderModal";
 import { Button, Input, Textarea } from "@nextui-org/react";
 import clsx from "clsx";
-import { Check, Filter, Home, Mail, MapPin, MoreVertical, Package, Phone, Plus, Search, Send, Truck } from "lucide-react";
+import { Check, Filter, Home, Mail, MapPin, MoreVertical, Package, Phone, Plus, Search, Send, Truck, Eye, Download, Edit, Trash2 } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
@@ -315,6 +315,9 @@ export default function OrdersPage() {
 }
 
 function OrderCard({ order }) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef(null);
+
   const STATUS_MAP = {
     "Đã giao": { icon: Check, color: "text-green-600", bg: "bg-green-100/80" },
     "Đang giao": { icon: Truck, color: "text-blue-600", bg: "bg-blue-100/80" },
@@ -324,6 +327,42 @@ function OrderCard({ order }) {
   const StatusIcon = STATUS_MAP[order.status]?.icon || Package;
   const statusColor = STATUS_MAP[order.status]?.color || "text-slate-600";
   const statusBg = STATUS_MAP[order.status]?.bg || "bg-slate-100";
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleMenuAction = (action) => {
+    switch (action) {
+      case "view":
+        console.log("View order:", order.id);
+        alert(`Xem chi tiết đơn hàng ${order.id}`);
+        break;
+      case "download":
+        console.log("Download order:", order.id);
+        alert(`Tải xuống đơn hàng ${order.id}`);
+        break;
+      case "edit":
+        console.log("Edit order:", order.id);
+        alert(`Chỉnh sửa đơn hàng ${order.id}`);
+        break;
+      case "delete":
+        console.log("Delete order:", order.id);
+        if (typeof window !== "undefined" && window.confirm(`Bạn có chắc chắn muốn hủy đơn hàng ${order.id}?`)) {
+          alert(`Đơn hàng ${order.id} đã được hủy`);
+        }
+        break;
+      default:
+        break;
+    }
+    setIsMenuOpen(false);
+  };
 
   return (
     <div className="rounded-2xl bg-white p-4 shadow-sm transition-all duration-300 hover:shadow-lg border border-slate-100 hover:border-[#5146ff]/30 sm:p-5">
@@ -346,9 +385,46 @@ function OrderCard({ order }) {
               <StatusIcon className="h-3 w-3 flex-shrink-0" />
               <span className="truncate">{order.status}</span>
             </div>
-            <button className="text-slate-400 hover:text-slate-600 p-1">
-              <MoreVertical className="h-4 w-4 sm:h-5 sm:w-5" />
-            </button>
+            <div className="relative" ref={menuRef}>
+              <button 
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="text-slate-400 hover:text-slate-600 p-1 hover:bg-slate-100 rounded-lg transition-colors"
+              >
+                <MoreVertical className="h-4 w-4 sm:h-5 sm:w-5" />
+              </button>
+              {isMenuOpen && (
+                <div className="absolute right-0 top-full mt-1 z-40 min-w-40 rounded-lg bg-white border border-slate-200 shadow-lg overflow-hidden">
+                  <button
+                    onClick={() => handleMenuAction("view")}
+                    className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 flex items-center gap-2 border-b border-slate-100"
+                  >
+                    <Eye className="h-4 w-4" />
+                    Xem chi tiết
+                  </button>
+                  <button
+                    onClick={() => handleMenuAction("download")}
+                    className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 flex items-center gap-2 border-b border-slate-100"
+                  >
+                    <Download className="h-4 w-4" />
+                    Tải xuống
+                  </button>
+                  <button
+                    onClick={() => handleMenuAction("edit")}
+                    className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 flex items-center gap-2 border-b border-slate-100"
+                  >
+                    <Edit className="h-4 w-4" />
+                    Chỉnh sửa
+                  </button>
+                  <button
+                    onClick={() => handleMenuAction("delete")}
+                    className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center gap-2"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                    Hủy đơn hàng
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
