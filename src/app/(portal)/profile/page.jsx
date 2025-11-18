@@ -123,11 +123,11 @@ const GeneralInfo = () => (
           <Image src="/profile.png" alt="Avatar" fill className="rounded-full bg-slate-200 object-cover" />
         </div>
         <div className="flex flex-col gap-2 flex-1">
-          <button type="button" className="flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#5146ff] to-[#6b5aff] px-3 py-2 text-xs sm:text-sm font-medium text-white shadow-md shadow-[#5146ff]/30 transition hover:shadow-lg hover:scale-105 w-full">
+          <button type="button" className="flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#5146ff] to-[#6b5aff] px-3 py-2 text-xs sm:text-sm font-medium text-white shadow-md shadow-[#5146ff]/30 transition hover:shadow-lg hover:scale-105 w-full sm:w-1/3">
             <User className="h-4 w-4" />
             Thay đổi ảnh
           </button>
-          <button type="button" className="flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-2 text-xs sm:text-sm font-medium text-slate-700 shadow-sm transition hover:bg-slate-50 hover:border-slate-300 w-full">
+          <button type="button" className="flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-2 text-xs sm:text-sm font-medium text-slate-700 shadow-sm transition hover:bg-slate-50 hover:border-slate-300 w-full sm:w-1/3">
             <svg className="h-4 w-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
             </svg>
