@@ -1,4 +1,4 @@
-import { Search, ClipboardList, Ticket, User, HelpCircle } from 'lucide-react';
+import { Search, ClipboardList, Ticket, HelpCircle } from 'lucide-react';
 
 export const NAV_LINKS = [
   {
@@ -19,12 +19,7 @@ export const NAV_LINKS = [
     description: "Giữ voucher không hết hạn",
     icon: Ticket,
   },
-  {
-    href: "/profile",
-    label: "Hồ sơ",
-    description: "Thông tin doanh nghiệp, kho bãi",
-    icon: User,
-  },
+
   {
     href: "/faq",
     label: "Hỗ trợ",

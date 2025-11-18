@@ -97,7 +97,7 @@ export default function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-20 left-0 z-30 w-full border-b border-slate-200 bg-white/95 p-4 backdrop-blur-lg md:hidden"
+            className="fixed top-20 left-0 z-30 w-full border-b border-slate-200 bg-white/95 p-4 backdrop-blur-lg md:hidden"
           >
             <nav className="flex flex-col space-y-1">
               {NAV_LINKS.map((link) => (
@@ -134,7 +134,7 @@ export default function Header() {
                   <Link
                     href="/auth"
                     onClick={() => setIsMenuOpen(false)}
-                    className="block w-full rounded-lg bg-[#5146ff] px-4 py-3 text-center text-base font-semibold text-white hover:bg-[#4137d8] transition-colors"
+                    className="mx-auto block rounded-lg bg-[#5146ff] px-6 py-3 text-center text-base font-semibold text-white hover:bg-[#4137d8] transition-colors"
                   >
                     Đăng nhập
                   </Link>

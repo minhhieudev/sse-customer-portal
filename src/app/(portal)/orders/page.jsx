@@ -194,7 +194,7 @@ export default function OrdersPage() {
                 placeholder="Hàng dễ vỡ, liên hệ giờ hành chính..."
               />
             </div>
-            <div className="flex flex-wrap items-center justify-end gap-3 pt-2">
+            <div className="flex flex-wrap items-center justify-center md:justify-end gap-3 pt-2">
               <Button
                 type="submit"
                 color="primary"
@@ -206,7 +206,7 @@ export default function OrdersPage() {
                 {isSubmittingRequest ? "Đang gửi..." : "Gửi yêu cầu ngay"}
               </Button>
             </div>
-            <p className="text-right text-xs text-slate-500">Nhân viên SSE sẽ liên hệ trong 5–10 phút để hỗ trợ.</p>
+            <p className="text-center md:text-right text-xs text-slate-500">Nhân viên SSE sẽ liên hệ trong 5–10 phút để hỗ trợ.</p>
           </form>
 
           {requestSuccess && (
