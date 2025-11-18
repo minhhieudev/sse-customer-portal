@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowLeft, Package, MapPin, Calendar, User, Phone, Mail, DollarSign, Info } from "lucide-react";
+import { ArrowLeft, Package, MapPin, User } from "lucide-react";
 import Link from "next/link";
 
 export default function CreateOrderPage() {

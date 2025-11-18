@@ -3,7 +3,7 @@
 import { useMemo, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { User, MapPin, Shield, Bell, CreditCard, Save, Plus, Mail, Phone, Building2, Home, Lock, LogIn, Edit, Trash2, MessageSquare, Package, Ticket, Truck } from "lucide-react";
+import { User, MapPin, Shield, Bell, CreditCard, Save, Plus, Mail, Lock, LogIn, Edit, Trash2, MessageSquare, Package, Ticket, Truck } from "lucide-react";
 import clsx from "clsx";
 
 const TABS = [
