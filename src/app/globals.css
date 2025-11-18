@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  font-family: var(--font-body);
+  background: radial-gradient(circle at top, #f4f0ff 0%, #eef6ff 60%, #f9f9ff 100%);
+  min-height: 100vh;
+  margin: 0px;
+}
+
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: rgba(81, 70, 255, 0.2);
+}
+
+.space-y-8 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 0;
+}
