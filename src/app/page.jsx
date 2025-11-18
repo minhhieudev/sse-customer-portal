@@ -29,7 +29,7 @@ export default function HomePage() {
       <main className="relative">
         {/* Hero Section */}
         <section className="relative overflow-hidden bg-gradient-to-r from-[#1f2050] to-[#2d3b6f] px-4 py-20 sm:px-6 sm:py-32 lg:px-8">
-          <div className="absolute inset-0 bg-[url('/customer.png')] bg-cover bg-center opacity-10"></div>
+          <div className="absolute inset-0 bg-[url('/banner.png')] bg-cover bg-center opacity-10"></div>
           <div className="relative mx-auto max-w-7xl text-center">
             <h1 className="text-4xl font-bold text-white sm:text-6xl lg:text-7xl">
               Quản lý vận chuyển
@@ -146,7 +146,7 @@ export default function HomePage() {
               Tạo tài khoản miễn phí và trải nghiệm dịch vụ giao vận hàng đầu.
             </p>
             <Link
-              href="/orders/create"
+              href="/orders"
               className="mt-8 group inline-flex items-center gap-3 rounded-full bg-white px-8 py-4 text-lg font-bold text-[#5146ff] shadow-xl transition hover:shadow-2xl hover:scale-105"
             >
               <span>{isLoggedIn ? 'Tạo đơn hàng ngay' : 'Tạo yêu cầu ngay'}</span>
