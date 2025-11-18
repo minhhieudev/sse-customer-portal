@@ -25,7 +25,6 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#f7f8fc] to-[#e6e9f4] font-inter">
       <Header />
-
       {/* Main Content */}
       <main className="relative">
         {/* Hero Section */}
