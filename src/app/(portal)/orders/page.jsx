@@ -87,11 +87,11 @@ export default function OrdersPage() {
     return (
       <div className="max-w-3xl space-y-6 mx-auto">
         <div className="rounded-3xl bg-white p-7 shadow-md border border-slate-100">
-          <p className="inline-flex items-center gap-2 rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-[#5146ff]">
+          <p className="inline-flex items-center gap-2 rounded-full bg-brand-blue/10 px-3 py-1 text-xs font-semibold text-brand-blue">
             Gửi yêu cầu gửi hàng quốc tế
           </p>
-          <h1 className="mt-3 text-3xl font-bold text-[#1f2050] text-center">Chỉ mất 30 giây — SSE liên hệ tư vấn ngay</h1>
-          <p className="mt-4 text-center text-lg text-[#5146ff] font-medium">Nhân viên sẽ liên hệ tư vấn ngay!</p>
+          <h1 className="mt-3 text-3xl font-bold text-brand-ink text-center">Chỉ mất 30 giây — SSE liên hệ tư vấn ngay</h1>
+          <p className="mt-4 text-center text-lg text-brand-blue font-medium">Nhân viên sẽ liên hệ tư vấn ngay!</p>
 
           <form onSubmit={handleSubmitRequest} className="mt-6 space-y-4">
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -139,7 +139,7 @@ export default function OrdersPage() {
                     name="country"
                     value={requestData.country}
                     onChange={(e) => setRequestData((prev) => ({ ...prev, country: e.target.value }))}
-                    className="w-full px-3 py-2 border border-slate-300 rounded-md focus:border-[#5146ff] focus:ring-[#5146ff]/50 appearance-none"
+                    className="w-full px-3 py-2 border border-slate-300 rounded-md focus:border-brand-blue focus:ring-brand-blue/50 appearance-none"
                   >
                     {COUNTRIES.map((c) => (
                       <option key={c} value={c}>
@@ -223,13 +223,12 @@ export default function OrdersPage() {
       <div className="space-y-3">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-bold text-[#1f2050] sm:text-3xl">Đơn hàng</h1>
+            <h1 className="text-2xl font-bold text-brand-ink sm:text-3xl">Đơn hàng</h1>
             <p className="mt-1 text-sm text-slate-500 sm:text-base">Quản lý, tạo mới và theo dõi tất cả các yêu cầu gửi hàng của bạn.</p>
           </div>
           <button
             onClick={() => setIsCreateModalOpen(true)}
-            className="flex items-center gap-2 rounded-full bg-[#5146ff] px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-[#5146ff]/30 transition-transform hover:scale-105 shrink-0"
-          >
+                            className="flex items-center gap-2 rounded-full bg-brand-blue px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-brand-blue/30 transition-transform hover:scale-105 shrink-0"          >
             <Plus className="h-4 w-4 sm:h-5 sm:w-5" />
             <span className="hidden xs:inline">Tạo đơn hàng</span>
             <span className="xs:hidden">Tạo</span>

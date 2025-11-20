@@ -17,24 +17,15 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { NAV_LINKS, ORDER_LINK } from "@/data/navigation";
+import { useAuthStore } from "@/stores/useAuthStore";
 
 export default function Header() {
-  const [user, setUser] = useState(null);
+  const { isAuthenticated, user, logout, hasHydrated } = useAuthStore();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openMobileDropdown, setOpenMobileDropdown] = useState(null);
 
   useEffect(() => {
     setIsMenuOpen(false);
-
-    if (typeof window !== "undefined") {
-      const storedUser = localStorage.getItem("user");
-      if (storedUser) {
-        const userObj = JSON.parse(storedUser);
-        if (userObj?.email) {
-          setUser(userObj);
-        }
-      }
-    }
   }, []);
 
   useEffect(() => {
@@ -44,16 +35,13 @@ export default function Header() {
   }, [isMenuOpen]);
 
   const handleLogout = () => {
-    if (typeof window !== "undefined") {
-      localStorage.removeItem("user");
-    }
-    setUser(null);
+    logout();
     window.location.href = "/auth";
   };
 
   const navigationLinks = NAV_LINKS.reduce((acc, link) => {
     acc.push(link);
-    if (user && link.href === "/tracking") {
+    if (isAuthenticated && link.href === "/tracking") {
       acc.push({
         ...ORDER_LINK,
         label: ORDER_LINK.labelAuthenticated,
@@ -129,7 +117,7 @@ export default function Header() {
           <div className="flex items-center gap-2 sm:gap-3">
             <Notifications />
 
-            {user ? (
+            {hasHydrated && isAuthenticated ? (
               <UserProfile user={user} onLogout={handleLogout} />
             ) : (
               <Link
@@ -207,7 +195,7 @@ export default function Header() {
                 )
               )}
               <div className="border-t border-slate-200 pt-4 mt-4">
-                {user ? (
+                {hasHydrated && isAuthenticated ? (
                   <>
                     <Link
                       href="/profile"

@@ -1,26 +1,22 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
-import {
-  Send,
-  Truck,
-  ShieldCheck,
-  Clock4,
-  ArrowRight,
-  Ship,
-  Plane,
-  Home,
-  Globe2,
-  FileCheck2,
-  Rocket,
-  Flag,
-  PhoneCall,
-  MapPin,
-  BadgeCheck,
-} from "lucide-react";
 import Header from "@/components/layout/Header";
 import { useAuthStore } from "@/stores/useAuthStore";
+import {
+  ArrowRight,
+  BadgeCheck,
+  Clock4,
+  Globe2,
+  MapPin,
+  PhoneCall,
+  Plane,
+  Send,
+  ShieldCheck,
+  Ship,
+  Truck
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 // Data for components
 const TOP_SERVICES = [
@@ -51,7 +47,7 @@ const WHY_CHOOSE_US = [
 // Main Page Component
 export default function HomePage() {
   const isLoggedIn = useAuthStore((state) => state.isAuthenticated);
-  const primaryButtonHref = isLoggedIn ? "/orders/create" : "/auth";
+  const primaryButtonHref = isLoggedIn ? "/orders?create=true" : "/auth";
   const primaryButtonLabel = isLoggedIn ? "Gửi đơn hàng" : "Tạo yêu cầu";
 
   return (

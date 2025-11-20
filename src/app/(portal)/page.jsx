@@ -3,10 +3,13 @@
 import Link from "next/link";
 import { ArrowRight, ChevronRight, Truck, Package, LifeBuoy, Ticket, Search } from "lucide-react";
 import { useState } from "react";
+import { useUIStore } from "@/stores/useUIStore";
 
 // --- COMPONENTS ---
 
 export default function HomePage() {
+  const { openCreateOrderModal } = useUIStore();
+
   return (
     <div className="space-y-12">
       {/* Hero Section */}
@@ -18,12 +21,12 @@ export default function HomePage() {
           Nền tảng tất cả trong một để quản lý, theo dõi và tối ưu hóa mọi nhu cầu vận chuyển của bạn.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
-          <Link
-            href="/orders/create"
+          <button
+            onClick={openCreateOrderModal}
             className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-orange px-8 py-3 text-base font-bold text-white shadow-lg shadow-brand-orange/30 transition hover:bg-opacity-90 hover:shadow-xl"
           >
             Tạo Vận Đơn Mới
-          </Link>
+          </button>
           <Link
             href="#tracking"
             className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-3 text-base font-bold text-brand-blue shadow-md border border-slate-200 transition hover:bg-slate-100 hover:shadow-lg"

@@ -2,13 +2,35 @@
 
 import Link from "next/link";
 import Header from "./Header";
+import { useUIStore } from "@/stores/useUIStore";
+import CreateOrderModal from "@/components/orders/CreateOrderModal";
+import { useToast } from "@/hooks/useToast";
+import { Suspense } from "react";
+import ModalTriggerFromQuery from "@/components/utils/ModalTriggerFromQuery";
 
 export default function AppShell({ children }) {
+  const { isCreateOrderModalOpen, closeCreateOrderModal } = useUIStore();
+  const { showToast } = useToast();
+
+  const handleOrderSubmit = (formData) => {
+    console.log("New Order Submitted:", formData);
+    showToast("ORDER_CREATED_SUCCESS");
+    closeCreateOrderModal();
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#EAF2FB] via-white to-[#FDF7EC] font-sans text-slate-900 flex flex-col">
+      <Suspense>
+        <ModalTriggerFromQuery />
+      </Suspense>
       <Header />
       <main className="flex-1 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-6">{children}</main>
       <Footer />
+      <CreateOrderModal
+        isOpen={isCreateOrderModalOpen}
+        onClose={closeCreateOrderModal}
+        onSubmit={handleOrderSubmit}
+      />
     </div>
   );
 }
