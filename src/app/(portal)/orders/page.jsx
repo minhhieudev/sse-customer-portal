@@ -6,6 +6,7 @@ import clsx from "clsx";
 import { Check, Filter, Home, Mail, MapPin, MoreVertical, Package, Phone, Plus, Search, Send, Truck, Eye, Download, Edit, Trash2 } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { useAuthStore } from "@/stores/useAuthStore";
 
 const MOCK_ORDERS = [
   { id: "SSE88C1", from: "Kho Long An", to: "227 Nguyễn Văn Cừ, Q5", status: "Đã giao", date: "15/11/2025" },
@@ -22,7 +23,7 @@ export default function OrdersPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const isLoggedIn = useAuthStore((state) => state.isAuthenticated);
   const filterRef = useRef(null);
 
   // Guest request form state
@@ -38,10 +39,6 @@ export default function OrdersPage() {
   const [isSubmittingRequest, setIsSubmittingRequest] = useState(false);
   const [requestSuccess, setRequestSuccess] = useState(false);
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) setIsLoggedIn(true);
-  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event) => {

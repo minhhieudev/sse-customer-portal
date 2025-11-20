@@ -25,7 +25,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="vi">
-      <body className={`${beVietnam.variable} ${inter.variable} bg-brand.sky text-brand.navy antialiased`}>
+      <body className={`${beVietnam.variable} ${inter.variable} font-body bg-brand.sky text-brand.navy antialiased`}>
         <Providers>{children}</Providers>
       </body>
     </html>

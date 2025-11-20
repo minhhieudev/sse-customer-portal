@@ -5,15 +5,16 @@ import { ArrowRight, Lock, Mail, Phone, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useAuthStore } from "@/stores/useAuthStore";
+import { useToast } from "@/hooks/useToast";
 
 const TabButton = ({ active, onClick, children }) => (
   <button
     onClick={onClick}
     className={clsx(
       "w-1/2 rounded-md py-2.5 text-sm font-medium leading-5 transition-colors duration-200",
-      active
-        ? "bg-white text-[#5146ff] shadow-md"
-        : "text-slate-500 hover:bg-slate-100"
+      active ? "bg-white text-[#5146ff] shadow-md" : "text-slate-500 hover:bg-slate-100"
     )}
   >
     {children}
@@ -53,14 +54,7 @@ export default function AuthPage() {
   return (
     <div className="w-full max-w-sm">
       <div className="mb-8 flex justify-center">
-        <Image
-          src="/logo-app.png"
-          alt="SSE Portal"
-          width={180}
-          height={180}
-          priority
-          className="object-contain"
-        />
+        <Image src="/logo-app.png" alt="SSE Portal" width={180} height={180} priority className="object-contain" />
       </div>
 
       <div className="mb-6 flex rounded-xl bg-slate-100 p-1">
@@ -95,10 +89,10 @@ export default function AuthPage() {
   );
 }
 
-import { useRouter } from "next/navigation";
-
 const LoginForm = () => {
   const router = useRouter();
+  const login = useAuthStore((state) => state.login);
+  const { showToast } = useToast();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -107,10 +101,9 @@ const LoginForm = () => {
       email: "customer@sse.com",
       avatar: "/profile.png",
     };
-    if (typeof window !== "undefined") {
-      localStorage.setItem("user", JSON.stringify(mockUser));
-      router.push("/");
-    }
+    login(mockUser, "demo-token");
+    showToast("LOGIN_SUCCESS");
+    router.push("/");
   };
 
   return (
@@ -128,35 +121,48 @@ const LoginForm = () => {
       </div>
       <SubmitButton>Đăng nhập</SubmitButton>
       <div className="my-6 flex items-center">
-        <div className="flex-grow border-t border-slate-200"></div>
+        <div className="flex-grow border-t border-slate-200" />
         <span className="mx-4 flex-shrink text-sm text-slate-400">Hoặc tiếp tục với</span>
-        <div className="flex-grow border-t border-slate-200"></div>
+        <div className="flex-grow border-t border-slate-200" />
       </div>
       <div className="grid grid-cols-2 gap-4">
-          <SocialButton icon="/logo-login/google.png" label="Google" />
-          <SocialButton icon="/logo-login/facebook.png" label="Facebook" />
+        <SocialButton icon="/logo-login/google.png" label="Google" />
+        <SocialButton icon="/logo-login/facebook.png" label="Facebook" />
       </div>
     </form>
   );
 };
 
-const RegisterForm = () => (
-  <form className="space-y-5">
-    <FormInput icon={User} type="text" placeholder="Họ và tên" required />
-    <FormInput icon={Mail} type="email" placeholder="Email" required />
-    <FormInput icon={Phone} type="tel" placeholder="Số điện thoại" required />
-    <FormInput icon={Lock} type="password" placeholder="Mật khẩu" required />
-    <SubmitButton>Đăng ký</SubmitButton>
-    <p className="pt-4 text-center text-xs text-slate-400">
-      Bằng việc đăng ký, bạn đồng ý với{" "}
-      <Link href="/terms" className="font-medium text-slate-500 hover:underline">
-        Điều khoản Dịch vụ
-      </Link>{" "}
-      và{" "}
-      <Link href="/privacy" className="font-medium text-slate-500 hover:underline">
-        Chính sách Bảo mật
-      </Link>
-      .
-    </p>
-  </form>
-);
+const RegisterForm = () => {
+  const { showToast } = useToast();
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    showToast("CONTACT_SENT", {
+      title: "Đăng ký thành công",
+      description: "Chúng tôi sẽ kích hoạt tài khoản và gửi email xác nhận.",
+      variant: "success",
+    });
+  };
+
+  return (
+    <form className="space-y-5" onSubmit={handleRegister}>
+      <FormInput icon={User} type="text" placeholder="Họ và tên" required />
+      <FormInput icon={Mail} type="email" placeholder="Email" required />
+      <FormInput icon={Phone} type="tel" placeholder="Số điện thoại" required />
+      <FormInput icon={Lock} type="password" placeholder="Mật khẩu" required />
+      <SubmitButton>Đăng ký</SubmitButton>
+      <p className="pt-4 text-center text-xs text-slate-400">
+        Bằng việc đăng ký, bạn đồng ý với{" "}
+        <Link href="/terms" className="font-medium text-slate-500 hover:underline">
+          Điều khoản Dịch vụ
+        </Link>{" "}
+        và{" "}
+        <Link href="/privacy" className="font-medium text-slate-500 hover:underline">
+          Chính sách Bảo mật
+        </Link>
+        .
+      </p>
+    </form>
+  );
+};

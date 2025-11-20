@@ -1,10 +1,11 @@
 ﻿"use client";
 
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { User, MapPin, Shield, Bell, CreditCard, Save, Plus, Mail, Lock, LogIn, Edit, Trash2, MessageSquare, Package, Ticket, Truck } from "lucide-react";
 import clsx from "clsx";
+import { useAuthStore } from "@/stores/useAuthStore";
 
 const TABS = [
   { name: "Thông tin chung", icon: User },
@@ -17,20 +18,7 @@ const TABS = [
 
 export default function ProfilePage() {
   const [activeTab, setActiveTab] = useState("Thông tin chung");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    // Check for logged-in user from localStorage
-    if (typeof window !== "undefined") {
-      const storedUser = localStorage.getItem("user");
-      if (storedUser) {
-        const userObj = JSON.parse(storedUser);
-        if (userObj?.email) {
-          setIsLoggedIn(true);
-        }
-      }
-    }
-  }, []);
+  const isLoggedIn = useAuthStore((state) => state.isAuthenticated);
 
   const renderContent = useMemo(() => {
     if (activeTab === "Thông tin chung") return <GeneralInfo />;
@@ -417,3 +405,4 @@ const Notifications = () => {
     </div>
   );
 };
+

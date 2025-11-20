@@ -6,10 +6,31 @@
   color-scheme: light;
 }
 
+html {
+  min-height: 100%;
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.page-container {
+  width: min(1200px, 100%);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   font-family: var(--font-body);
   background: radial-gradient(circle at 20% 20%, #eaf2fb 0%, #f9fbff 45%, #fdf7ec 100%);
-  min-height: 100vh;
   margin: 0px;
 }
 

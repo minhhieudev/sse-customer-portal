@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState, useRef } from "react";
 import clsx from "clsx";
@@ -77,7 +77,7 @@ export default function Header() {
                 priority
               />
             </Link>
-            <div className="items-center gap-2 rounded-full bg-[#004B9A]/10 px-2 py-1 text-xs font-semibold text-[#004B9A] flex">
+            <div className="items-center gap-2 rounded-full bg-brand-blue/10 px-2 py-1 text-xs font-semibold text-brand-blue flex">
               <PhoneCall className="h-3 w-3" />
               <a href="tel:0889741931" className="hover:underline">
                 Hotline: 0889 741 931
@@ -88,7 +88,7 @@ export default function Header() {
             {navigationLinks.map((link) =>
               link.items ? (
                 <div key={link.label} className="relative group">
-                  <button className="flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-[13px] font-semibold text-slate-700 transition hover:bg-[#004B9A]/12 hover:text-[#004B9A]">
+                  <button className="flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-[13px] font-semibold text-slate-700 transition hover:bg-brand-blue/12 hover:text-brand-blue">
                     <link.icon className="hidden h-4 w-4 lg:block" />
                     {link.label}
                     <ChevronDown className="h-3.5 w-3.5 transition duration-200 group-hover:-rotate-180" />
@@ -100,9 +100,9 @@ export default function Header() {
                           <Link
                             key={item.href}
                             href={item.href}
-                            className="flex items-start gap-3 px-4 py-3 text-sm text-slate-700 transition hover:bg-[#004B9A]/7 hover:text-[#004B9A]"
+                            className="flex items-start gap-3 px-4 py-3 text-sm text-slate-700 transition hover:bg-brand-blue/10 hover:text-brand-blue"
                           >
-                            <div className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-lg bg-[#004B9A]/10 text-[#004B9A]">
+                            <div className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-lg bg-brand-blue/10 text-brand-blue">
                               <item.icon className="h-4 w-4" />
                             </div>
                             <div>
@@ -118,7 +118,7 @@ export default function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-[13px] font-semibold text-slate-700 transition hover:bg-[#004B9A]/12 hover:text-[#004B9A]"
+                  className="flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-[13px] font-semibold text-slate-700 transition hover:bg-brand-blue/12 hover:text-brand-blue"
                 >
                   <link.icon className="hidden h-4 w-4 lg:block" />
                   {link.label}
@@ -134,7 +134,7 @@ export default function Header() {
             ) : (
               <Link
                 href="/auth"
-                className="hidden sm:inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#004B9A] via-[#004B9A] to-[#F4A300] px-6 py-3 text-sm font-bold text-white shadow-lg transition hover:shadow-xl hover:scale-105"
+                className="hidden sm:inline-flex items-center gap-2 rounded-full bg-brand-blue px-6 py-3 text-sm font-bold text-white shadow-lg transition hover:shadow-xl hover:scale-105"
               >
                 Đăng nhập
               </Link>
@@ -187,7 +187,7 @@ export default function Header() {
                             onClick={() => setIsMenuOpen(false)}
                             className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
                           >
-                            <item.icon className="h-4 w-4 text-[#004B9A]" />
+                            <item.icon className="h-4 w-4 text-brand-blue" />
                             {item.label}
                           </Link>
                         ))}
@@ -229,7 +229,7 @@ export default function Header() {
                   <Link
                     href="/auth"
                     onClick={() => setIsMenuOpen(false)}
-                    className="mx-auto block rounded-lg bg-gradient-to-r from-[#004B9A] to-[#F4A300] px-6 py-3 text-center text-base font-semibold text-white shadow-md hover:shadow-lg transition"
+                    className="mx-auto block rounded-lg bg-brand-blue px-6 py-3 text-center text-base font-semibold text-white shadow-md hover:shadow-lg transition"
                   >
                     Đăng nhập
                   </Link>
@@ -279,7 +279,7 @@ function UserProfile({ user, onLogout }) {
             <div className="flex items-center gap-4 border-b border-slate-100 p-4">
               <Image src={user.avatar} alt={user.name} width={48} height={48} className="rounded-full" />
               <div>
-                <p className="text-md font-bold text-[#004B9A]">{user.name}</p>
+                <p className="text-md font-bold text-brand-blue">{user.name}</p>
                 <p className="text-sm text-slate-500">{user.email}</p>
               </div>
             </div>
@@ -364,7 +364,7 @@ function Notifications() {
       >
         <Bell className="h-5 w-5" />
         {unreadCount > 0 && (
-          <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#F4A300] text-xs font-bold text-white">
+          <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-brand-orange text-xs font-bold text-white">
             {unreadCount}
           </span>
         )}
@@ -383,7 +383,7 @@ function Notifications() {
             >
               <div className="p-4">
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-lg font-bold text-[#004B9A]">Thông báo</h3>
+                  <h3 className="text-lg font-bold text-brand-blue">Thông báo</h3>
                   <button onClick={() => setIsOpen(false)} className="rounded-lg p-1 text-slate-400 hover:text-slate-600 hover:bg-slate-100">
                     <X className="h-5 w-5" />
                   </button>
@@ -400,7 +400,7 @@ function Notifications() {
                       <div
                         className={clsx(
                           "flex h-8 w-8 items-center justify-center rounded-full flex-shrink-0",
-                          !item.isRead ? "bg-blue-100 text-[#004B9A]" : "bg-slate-100 text-slate-500"
+                          !item.isRead ? "bg-blue-100 text-brand-blue" : "bg-slate-100 text-slate-500"
                         )}
                       >
                         <item.icon className="h-4 w-4" />
@@ -410,12 +410,12 @@ function Notifications() {
                         <p className="text-sm text-slate-500 line-clamp-2">{item.description}</p>
                         <p className="mt-1 text-xs text-slate-400">{item.time}</p>
                       </div>
-                      {!item.isRead && <div className="h-2 w-2 bg-[#F4A300] rounded-full mt-2 flex-shrink-0"></div>}
+                      {!item.isRead && <div className="h-2 w-2 bg-brand-orange rounded-full mt-2 flex-shrink-0"></div>}
                     </div>
                   ))}
                 </div>
                 <div className="mt-3 pt-3 border-t border-slate-100">
-                  <button className="w-full text-sm font-semibold text-[#004B9A] hover:text-[#003d7b] py-2">
+                  <button className="w-full text-sm font-semibold text-brand-blue hover:text-blue-800 py-2">
                     Xem tất cả
                   </button>
                 </div>
@@ -432,7 +432,7 @@ function Notifications() {
             >
               <div className="p-3">
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-sm font-bold text-[#004B9A]">Thông báo</h3>
+                  <h3 className="text-sm font-bold text-brand-blue">Thông báo</h3>
                   <button onClick={() => setIsOpen(false)} className="rounded p-0.5 text-slate-400 hover:text-slate-600 hover:bg-slate-100">
                     <X className="h-4 w-4" />
                   </button>
@@ -449,7 +449,7 @@ function Notifications() {
                       <div
                         className={clsx(
                           "flex h-7 w-7 items-center justify-center rounded-full flex-shrink-0 mt-0.5",
-                          !item.isRead ? "bg-blue-100 text-[#004B9A]" : "bg-slate-100 text-slate-500"
+                          !item.isRead ? "bg-blue-100 text-brand-blue" : "bg-slate-100 text-slate-500"
                         )}
                       >
                         <item.icon className="h-3.5 w-3.5" />
@@ -459,12 +459,12 @@ function Notifications() {
                         <p className="text-xs text-slate-600 line-clamp-1">{item.description}</p>
                         <p className="text-xs text-slate-400 mt-0.5">{item.time}</p>
                       </div>
-                      {!item.isRead && <div className="h-1 w-1 bg-[#F4A300] rounded-full mt-1.5 flex-shrink-0"></div>}
+                      {!item.isRead && <div className="h-1 w-1 bg-brand-orange rounded-full mt-1.5 flex-shrink-0"></div>}
                     </div>
                   ))}
                 </div>
                 <div className="mt-2 pt-2 border-t border-slate-100">
-                  <button className="w-full text-xs font-semibold text-[#004B9A] hover:text-[#003d7b] py-1.5">
+                  <button className="w-full text-xs font-semibold text-brand-blue hover:text-blue-800 py-1.5">
                     Xem tất cả
                   </button>
                 </div>

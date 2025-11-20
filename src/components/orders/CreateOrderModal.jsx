@@ -1,26 +1,23 @@
 ﻿"use client";
 
-import { useEffect, useMemo, useState } from "react";
 import {
-  Button,
-  Input,
-  Textarea,
-  Select,
-  SelectItem,
-  RadioGroup,
-  Radio,
   Checkbox,
+  Radio,
+  RadioGroup,
+  Select,
+  SelectItem
 } from "@nextui-org/react";
 import {
-  Package,
-  User,
-  Phone,
   Mail,
-  Send,
-  Zap,
-  ShoppingCart,
+  Package,
+  Phone,
   Search,
+  Send,
+  ShoppingCart,
+  User,
+  Zap,
 } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
 
 
 const serviceOptions = [

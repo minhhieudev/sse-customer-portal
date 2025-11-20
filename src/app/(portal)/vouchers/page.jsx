@@ -4,7 +4,8 @@ import clsx from "clsx";
 import { CheckCircle2, Clock3, Plus, Ticket, LogIn } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo, useState, useEffect } from "react";
+import { useAuthStore } from "@/stores/useAuthStore";
+import { useMemo, useState } from "react";
 
 const MOCK_VOUCHERS = [
   {
@@ -74,20 +75,8 @@ const TABS = ["Sẵn sàng", "Đã dùng", "Hết hạn"];
 export default function VouchersPage() {
   const [activeTab, setActiveTab] = useState("Sẵn sàng");
   const [keyword, setKeyword] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const isLoggedIn = useAuthStore((state) => state.isAuthenticated);
 
-  useEffect(() => {
-    // Check for logged-in user from localStorage
-    if (typeof window !== "undefined") {
-      const storedUser = localStorage.getItem("user");
-      if (storedUser) {
-        const userObj = JSON.parse(storedUser);
-        if (userObj?.email) {
-          setIsLoggedIn(true);
-        }
-      }
-    }
-  }, []);
 
   const filteredVouchers = useMemo(() => {
     return MOCK_VOUCHERS.filter((v) => v.status === activeTab && v.code.toLowerCase().includes(keyword.toLowerCase().trim()));
@@ -219,3 +208,4 @@ const EmptyState = () => (
     <p className="mt-1 text-slate-500">Bạn không có voucher nào trong mục này.</p>
   </div>
 );
+
