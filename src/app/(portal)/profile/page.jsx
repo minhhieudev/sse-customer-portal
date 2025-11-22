@@ -140,7 +140,7 @@ export default function ProfilePage() {
       return <SecuritySettings token={token} showToast={showToast} />;
     if (activeTab === "Thông báo") return <Notifications />;
     return <ComingSoon tab={activeTab} />;
-  }, [activeTab, isLoadingProfile, isPristine, isSaving, profileData, showToast, token]);
+  }, [activeTab, isLoadingProfile, isPristine, isSaving, profileData, showToast, token, handleReset, handleSubmit]);
 
   if (!hasHydrated) {
     return (
