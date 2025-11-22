@@ -3,7 +3,7 @@
 import axios from "axios";
 
 const apiClient = axios.create({
-  baseURL: (typeof process !== 'undefined' && process.env?.NEXT_PUBLIC_API_BASE_URL ?? "https://api.saigonspeed.vn").replace(/\/$/, ""),
+  baseURL: ((typeof process !== 'undefined' && process.env?.NEXT_PUBLIC_API_BASE_URL) ?? "https://api.saigonspeed.vn").replace(/\/$/, ""),
   withCredentials: true,
   headers: {
     Accept: "application/json",
