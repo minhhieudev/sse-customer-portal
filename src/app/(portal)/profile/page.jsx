@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -87,11 +87,11 @@ export default function ProfilePage() {
     setProfileData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleReset = () => {
+  const handleReset = useCallback(() => {
     if (initialData) setProfileData(initialData);
-  };
+  }, [initialData]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
     setIsSaving(true);
     try {
@@ -114,7 +114,7 @@ export default function ProfilePage() {
     } finally {
       setIsSaving(false);
     }
-  };
+  }, [profileData, token, showToast]);
 
   const isPristine = useMemo(() => {
     if (!initialData) return true;
