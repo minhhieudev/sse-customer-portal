@@ -1,4 +1,4 @@
-import { ShieldCheck, Rocket, Users, TrendingUp, Target, Eye } from 'lucide-react';
+import { Eye, Rocket, ShieldCheck, Target, Users } from 'lucide-react';
 
 export default function AboutPage() {
   return (

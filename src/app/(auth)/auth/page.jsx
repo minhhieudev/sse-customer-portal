@@ -1,14 +1,14 @@
 "use client";
 
+import { useToast } from "@/hooks/useToast";
+import { authService } from "@/services/auth.service";
+import { useAuthStore } from "@/stores/useAuthStore";
 import clsx from "clsx";
 import { ArrowRight, Loader2, Lock, Mail, Phone, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useAuthStore } from "@/stores/useAuthStore";
-import { useToast } from "@/hooks/useToast";
-import { authService } from "@/services/auth.service";
+import { useEffect, useState } from "react";
 
 export default function AuthPage() {
   const [activeTab, setActiveTab] = useState("login");
@@ -109,7 +109,9 @@ const LoginForm = ({ prefillUsername }) => {
 
       // Fetch the actual user profile to get email and other data
       try {
-        const userProfile = await authService.getCurrentUser(response?.access_token);
+        const userProfile = await authService.getCurrentUser(
+          response?.access_token
+        );
         const userData = {
           name: userProfile?.username || formData.username,
           username: userProfile?.username || formData.username,
@@ -117,7 +119,8 @@ const LoginForm = ({ prefillUsername }) => {
           avatar: "/profile.png",
         };
         login(userData, response?.access_token);
-      } catch (profileError) {
+      // eslint-disable-next-line no-unused-vars
+      } catch (error) {
         // Fallback if profile fetch fails
         const userProfile = {
           name: formData.username,

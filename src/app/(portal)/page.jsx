@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
-import { ArrowRight, ChevronRight, Truck, Package, LifeBuoy, Ticket, Search } from "lucide-react";
-import { useState } from "react";
 import { useUIStore } from "@/stores/useUIStore";
+import { ChevronRight, LifeBuoy, Package, Search, Ticket, Truck } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
 
 // --- COMPONENTS ---
 

@@ -1,4 +1,4 @@
-import { Globe, Plane, Shield, Star, Car, GraduationCap } from 'lucide-react';
+import { Car, Globe, GraduationCap, Plane, Shield } from 'lucide-react';
 
 const serviceCategories = [
   {
