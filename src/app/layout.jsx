@@ -2,6 +2,7 @@
 
 import "@/app/globals.css";
 import { Providers } from "./providers";
+import { Footer } from "@/components/layout/AppShell";
 
 const beVietnam = Be_Vietnam_Pro({
   subsets: ["vietnamese"],
@@ -24,9 +25,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="vi">
+    <html lang="vi" suppressHydrationWarning>
       <body className={`${beVietnam.variable} ${inter.variable} font-body bg-brand.sky text-brand.navy antialiased`}>
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

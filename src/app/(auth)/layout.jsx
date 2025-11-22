@@ -24,7 +24,7 @@ export default function AuthLayout({ children }) {
             />
           </div>
           <div>
-            <p className="text-sm font-semibold text-white">SSE Customer Portal</p>
+            <p className="text-sm font-semibold text-white">SSE Logistics</p>
             <p className="text-xs text-indigo-200">Nền tảng dành cho bạn</p>
           </div>
         </Link>

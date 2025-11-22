@@ -2,33 +2,47 @@
 
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
+import { clearAuthTokenCookie, getAuthTokenFromCookie, setAuthTokenCookie } from "@/lib/authCookies";
 
-const defaultState = {
-  user: null,
-  token: null,
-  isAuthenticated: false,
+const buildDefaultState = () => {
+  const token = getAuthTokenFromCookie();
+  return {
+    user: null,
+    token,
+    isAuthenticated: Boolean(token),
+    hasHydrated: true,
+  };
 };
 
 export const useAuthStore = create(
   persist(
     (set) => ({
-      ...defaultState,
+      ...buildDefaultState(),
       hasHydrated: false,
       login: (userData, token) =>
-        set({
-          user: userData,
-          token: token ?? null,
-          isAuthenticated: true,
+        set(() => {
+          const tokenToUse = token ?? getAuthTokenFromCookie();
+          if (tokenToUse) {
+            setAuthTokenCookie(tokenToUse);
+          }
+          return {
+            user: userData,
+            token: tokenToUse ?? null,
+            isAuthenticated: Boolean(tokenToUse),
+          };
         }),
       logout: () =>
-        set({
-          ...defaultState,
-          hasHydrated: true,
+        set(() => {
+          clearAuthTokenCookie();
+          return {
+            ...buildDefaultState(),
+            hasHydrated: true,
+          };
         }),
       updateUser: (payload) =>
         set((state) => ({
           user: state.user ? { ...state.user, ...payload } : payload,
-          isAuthenticated: Boolean(state.user ?? payload),
+          isAuthenticated: Boolean(state.user ?? payload ?? state.token),
         })),
       setHasHydrated: (value) => set({ hasHydrated: value }),
     }),
@@ -41,6 +55,10 @@ export const useAuthStore = create(
         isAuthenticated: state.isAuthenticated,
       }),
       onRehydrateStorage: () => (state) => {
+        const token = state?.token ?? getAuthTokenFromCookie();
+        if (token) {
+          setAuthTokenCookie(token);
+        }
         state?.setHasHydrated(true);
       },
     }

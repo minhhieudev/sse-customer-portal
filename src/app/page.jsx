@@ -169,15 +169,6 @@ export default function HomePage() {
           </div>
         </section>
       </main>
-
-      {/* --- Footer (Improved version) --- */}
-      <footer className="bg-slate-800 text-slate-300 py-12 border-t-4 border-brand-blue">
-        <div className="page-container text-center">
-          <Image src="/logo-navbar.png" width={150} height={40} alt="Saigon Speed Logo" className="mx-auto mb-4" />
-          <p>&copy; {new Date().getFullYear()} Saigon Speed Logistics. All Rights Reserved.</p>
-          <p className="text-sm text-slate-400 mt-2">Số 124/11 Cống Hoà, Phường Tân Sơn Nhất, TP. Hồ Chí Minh</p>
-        </div>
-      </footer>
     </div>
   );
 }

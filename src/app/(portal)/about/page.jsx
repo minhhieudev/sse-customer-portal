@@ -5,8 +5,8 @@ export default function AboutPage() {
     <main className="bg-white">
       {/* Hero Section */}
       <section className="bg-brand-blue text-white">
-        <div className="page-container py-20 text-center">
-          <h1 className="text-5xl font-bold font-display tracking-tight sm:text-6xl">
+        <div className="page-container py-16 text-center">
+          <h1 className="text-2xl font-bold font-display tracking-tight sm:text-4xl">
             Về Saigon Speed
           </h1>
           <p className="mt-6 text-xl max-w-3xl mx-auto text-blue-100">

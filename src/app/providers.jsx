@@ -74,7 +74,6 @@ export function Providers({ children }) {
             style: {
               borderRadius: "16px",
               background: "#ffffff",
-              color: "#0f172a",
               border: "1px solid rgba(15, 23, 42, 0.08)",
             },
           }}
